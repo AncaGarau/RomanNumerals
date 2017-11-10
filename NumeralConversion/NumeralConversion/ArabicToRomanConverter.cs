@@ -20,12 +20,21 @@ namespace NumeralConversion
 			foreach (var romanSymbol in RomanSymbolsProvider.GetRomanSymbols)
 			{
 				var timesToAppend = input / romanSymbol.Key;
-				input = input - timesToAppend * romanSymbol.Key;
+
+				if(timesToAppend.Equals(0))
+					continue;
+
 				var currentNumeral = string.Concat(Enumerable.Repeat(romanSymbol.Value, timesToAppend));
 				romanNumeralBuilder.Append(currentNumeral);
+
+				var newInput = input - timesToAppend * romanSymbol.Key;
+				if(input.ToString().Length -newInput.ToString().Length >= 1)
+					romanNumeralBuilder.Append(" ");
+
+				input = newInput;
 			}
 
-			return romanNumeralBuilder.ToString();
+			return romanNumeralBuilder.ToString().TrimEnd();
 		}
 
 		private void GuardAgainstInvalidInput(int input)
