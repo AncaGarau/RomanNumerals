@@ -17,7 +17,7 @@ namespace NumeralConversion
 		{
 			var romanNumeralBuilder = new StringBuilder();
 
-			foreach (var romanSymbol in RomanSymbolsProvider.GetRomanSymbols)
+			foreach (var romanSymbol in RomanSymbolsProvider.GetRomanSymbols())
 			{
 				var timesToAppend = input / romanSymbol.Key;
 
