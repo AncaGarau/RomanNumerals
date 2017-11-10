@@ -28,9 +28,8 @@ namespace NumeralConversion
 				romanNumeralBuilder.Append(currentNumeral);
 
 				var newInput = input - timesToAppend * romanSymbol.Key;
-				if(input.ToString().Length -newInput.ToString().Length >= 1)
+				if(InputDecreasedByAtLeastOneDigit(input, newInput))
 					romanNumeralBuilder.Append(" ");
-
 				input = newInput;
 			}
 
@@ -41,6 +40,11 @@ namespace NumeralConversion
 		{
 			if (input < 1 || input > 3999)
 				throw new ArgumentException("The number to be converted to a roman numeral is out of the accepted range! ", nameof(input));
+		}
+
+		private static bool InputDecreasedByAtLeastOneDigit(int input, int newInput)
+		{
+			return input.ToString().Length - newInput.ToString().Length >= 1;
 		}
 	}
 }
