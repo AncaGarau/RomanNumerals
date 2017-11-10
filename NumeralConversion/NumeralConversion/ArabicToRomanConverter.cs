@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace NumeralConversion
@@ -6,6 +7,13 @@ namespace NumeralConversion
 	public class ArabicToRomanConverter : INumeralConverter<int, string>
 	{
 		public string Convert(int input)
+		{
+			GuardAgainstInvalidInput(input);
+
+			return GenerateRomanNumeral(input);
+		}
+
+		private static string GenerateRomanNumeral(int input)
 		{
 			var romanNumeralBuilder = new StringBuilder();
 
@@ -18,6 +26,12 @@ namespace NumeralConversion
 			}
 
 			return romanNumeralBuilder.ToString();
+		}
+
+		private void GuardAgainstInvalidInput(int input)
+		{
+			if (input < 1 || input > 3999)
+				throw new ArgumentException("The number to be converted to a roman numeral is out of the accepted range! ", nameof(input));
 		}
 	}
 }

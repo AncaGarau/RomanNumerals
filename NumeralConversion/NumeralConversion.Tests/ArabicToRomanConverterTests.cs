@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace NumeralConversion.Tests
 {
@@ -41,6 +42,20 @@ namespace NumeralConversion.Tests
 			var actualOutput = converter.Convert(input);
 
 			Assert.AreEqual(actualOutput, expectedOutput);
+		}
+
+		[Test]
+		[TestCase(0)]
+		[TestCase(-50)]
+		[TestCase(-8709)]
+		[TestCase(4000)]
+		[TestCase(4050)]
+		[TestCase(43546732)]
+		public void Should_throw_exception_with_specific_message_when_the_input_is_invalid(int input)
+		{
+			var ex = Assert.Throws<ArgumentException>(() => converter.Convert(input));
+
+			Assert.AreEqual(ex.Message, "The number to be converted to a roman numeral is out of the accepted range! \r\nParameter name: input");
 		}
 	}
 }
