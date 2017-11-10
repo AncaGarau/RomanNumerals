@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeralConversion.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextManipulation", "TextManipulation\TextManipulation.csproj", "{66609DBB-AB22-4130-BB21-00155843C49D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextManipulation.Tests", "TextManipulation.Tests\TextManipulation.Tests.csproj", "{6E6C6229-9E77-408F-B2BB-700C5530F9DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{66609DBB-AB22-4130-BB21-00155843C49D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66609DBB-AB22-4130-BB21-00155843C49D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66609DBB-AB22-4130-BB21-00155843C49D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E6C6229-9E77-408F-B2BB-700C5530F9DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6C6229-9E77-408F-B2BB-700C5530F9DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6C6229-9E77-408F-B2BB-700C5530F9DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E6C6229-9E77-408F-B2BB-700C5530F9DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
