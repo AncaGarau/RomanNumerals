@@ -14,7 +14,7 @@ namespace IntegrationTests
 		public void SetUp()
 		{
 			arabicToRomanConverter = new ArabicToRomanConverter();
-			substitutionService = new IntegerSubstitutionService(SearchPatterns.IntegerPattern, arabicToRomanConverter);
+			substitutionService = new IntegerSubstitutionService(SearchPatterns.IntegerFrom1To3999Pattern, arabicToRomanConverter);
 		}
 
 		[Test]
