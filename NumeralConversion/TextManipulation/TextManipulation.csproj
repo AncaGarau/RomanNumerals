@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArabicNumeralSubstitutionService.cs" />
+    <Compile Include="IntegerSubstitutionService.cs" />
     <Compile Include="ISubstitutionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchPatterns.cs" />
     <Compile Include="SubstitutionResult.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,9 +5,9 @@ using NUnit.Framework;
 namespace TextManipulation.Tests
 {
 	[TestFixture]
-	internal class ArabicNumeralSubstitutionServiceTests
+	internal class IntegerSubstitutionServiceTests
 	{
-		private ArabicNumeralSubstitutionService service;
+		private IntegerSubstitutionService service;
 		private INumeralConverter<int, string> converter;
 		
 		[SetUp]
@@ -15,7 +15,7 @@ namespace TextManipulation.Tests
 		{
 			converter = Substitute.For<INumeralConverter<int, string>>();
 			converter.Convert(Arg.Any<int>()).Returns("convertedNumeral");
-			service = new ArabicNumeralSubstitutionService(converter);
+			service = new IntegerSubstitutionService(SearchPatterns.IntegerPattern, converter);
 		}
 
 		[Test]
@@ -23,7 +23,9 @@ namespace TextManipulation.Tests
 		[TestCase("Consectetur 5 adipiscing elit 9.", "Consectetur convertedNumeral adipiscing elit convertedNumeral.", 2)]
 		[TestCase("Lorem ipsum 2 dolor sit amet.", "Lorem ipsum convertedNumeral dolor sit amet.", 1)]
 		[TestCase("123 456 7890", "convertedNumeral convertedNumeral convertedNumeral", 3)]
-		[TestCase("AAA123 BBB456 DDD7890", "AAAconvertedNumeral BBBconvertedNumeral DDDconvertedNumeral", 3)]
+		[TestCase("AAA123 BBB456 DDD7890", "AAA123 BBB456 DDD7890", 0)]
+		[TestCase("Should substitute this 5 but not this5.", "Should substitute this convertedNumeral but not this5.", 1)]
+		[TestCase("Substitute this 1234 multiple 1234 times 1234.", "Substitute this convertedNumeral multiple convertedNumeral times convertedNumeral.", 3)]
 		public void Should_substitute_arabic_numerals(string inputText, string expectedOutputText, int expectedNumberOfSubstitutions)
 		{
 			var result = service.Substitute(inputText);
