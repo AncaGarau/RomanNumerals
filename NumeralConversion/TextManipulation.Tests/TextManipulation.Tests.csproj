@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="IntegerSubstitutionServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchPatternsTests.cs" />
+    <Compile Include="IntegerMatcherTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
