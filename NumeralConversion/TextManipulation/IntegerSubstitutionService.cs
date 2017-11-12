@@ -7,16 +7,16 @@ namespace TextManipulation
 	public class IntegerSubstitutionService : ISubstitutionService
 	{
 		private readonly INumeralConverter<int, string> converter;
-		private readonly string integerPattern;
+		private readonly IntegerMatcher integerMatcher;
 
 		private const string SubstitutionErrorMessage =
 			@"There was an error during the substitution process.
 			Please make sure that the pattern is matching integers and that the matched values are compatible with the converter.
 			See inner exception for deatils";
 
-		public IntegerSubstitutionService(string integerPattern, INumeralConverter<int, string> converter)
+		public IntegerSubstitutionService(IntegerMatcher integerMatcher, INumeralConverter<int, string> converter)
 		{
-			this.integerPattern = integerPattern;
+			this.integerMatcher = integerMatcher;
 			this.converter = converter;
 		}
 
@@ -24,7 +24,7 @@ namespace TextManipulation
 		{
 			var replacementCounter = 0;
 
-			text = Regex.Replace(text, integerPattern, match =>
+			text = Regex.Replace(text, integerMatcher.Value, match =>
 			{
 				try
 				{

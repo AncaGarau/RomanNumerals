@@ -17,7 +17,7 @@ namespace TextManipulation.Tests
 		{
 			converter = Substitute.For<INumeralConverter<int, string>>();
 			converter.Convert(Arg.Any<int>()).Returns("convertedNumeral");
-			service = new IntegerSubstitutionService(SearchPatterns.IntegerFrom1To3999Pattern, converter);
+			service = new IntegerSubstitutionService(IntegerMatcher.From1To3999, converter);
 		}
 
 		[Test]

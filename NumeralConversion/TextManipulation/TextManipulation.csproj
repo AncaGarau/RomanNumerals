@@ -43,7 +43,7 @@
     <Compile Include="IntegerSubstitutionService.cs" />
     <Compile Include="ISubstitutionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchPatterns.cs" />
+    <Compile Include="IntegerMatcher.cs" />
     <Compile Include="SubstitutionResult.cs" />
   </ItemGroup>
   <ItemGroup>
