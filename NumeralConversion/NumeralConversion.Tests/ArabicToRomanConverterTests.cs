@@ -6,7 +6,7 @@ namespace NumeralConversion.Tests
 	[TestFixture]
 	internal class ArabicToRomanConverterTests
 	{
-		private INumeralConverter<int, string> converter = new ArabicToRomanConverter();
+		private readonly INumeralConverter<int, string> converter = new ArabicToRomanConverter();
 
 		[Test]
 		[TestCase(1, "I")]
@@ -28,16 +28,19 @@ namespace NumeralConversion.Tests
 		[TestCase(90, "XC")]
 		[TestCase(100, "C")]
 		[TestCase(265, "CC LX V")]
+		[TestCase(320, "CCC XX")]
 		[TestCase(489, "CD LXXX IX")]
 		[TestCase(500, "D")]
 		[TestCase(699, "DC XC IX")]
 		[TestCase(861, "DCCC LX I")]
 		[TestCase(900, "CM")]
-		[TestCase(936, "CM XXX VI")]
+		[TestCase(906, "CM VI")]
 		[TestCase(1000, "M")]
 		[TestCase(1992, "M CM XC II")]
 		[TestCase(2000, "MM")]
 		[TestCase(2017, "MM X VII")]
+		[TestCase(2308, "MM CCC VIII")]
+		[TestCase(3740, "MMM DCC XL")]
 		[TestCase(3999, "MMM CM XC IX")]
 		public void Should_convert_arabic_to_roman_numerals_correctly(int input, string expectedOutput)
 		{
