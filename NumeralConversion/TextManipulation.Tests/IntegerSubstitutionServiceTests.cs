@@ -1,4 +1,6 @@
-﻿using NSubstitute;
+﻿using System;
+using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 using NumeralConversion;
 using NUnit.Framework;
 
@@ -32,6 +34,21 @@ namespace TextManipulation.Tests
 
 			Assert.That(result.NumberOfSubstitutions.Equals(expectedNumberOfSubstitutions));
 			Assert.That(result.ResultedText.Equals(expectedOutputText));
+		}
+
+		[Test]
+		public void Should_throw_exception_when_converter_throws()
+		{
+			converter.Convert(Arg.Any<int>())
+				.Throws(new ArgumentException(
+					"The number to be converted to a roman numeral is out of the accepted range! \r\nParameter name: input"));
+
+			var ex = Assert.Throws<Exception>(() => service.Substitute("Some string to 123 search."));
+
+			Assert.That(ex.InnerException.Message.Equals("The number to be converted to a roman numeral is out of the accepted range! \r\nParameter name: input"));
+			Assert.That(ex.Message.Equals(@"There was an error during the substitution process.
+			Please make sure that the pattern is matching integers and that the matched values are compatible with the converter.
+			See inner exception for deatils"));
 		}
 	}
 }

@@ -1,4 +1,7 @@
-﻿using NumeralConversion;
+﻿using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NumeralConversion;
 using NUnit.Framework;
 using TextManipulation;
 
@@ -31,6 +34,50 @@ namespace IntegrationTests
 
 			Assert.That(result.NumberOfSubstitutions.Equals(expectedNumberOfSubstitutions));
 			Assert.That(result.ResultedText.Equals(expectedOutputText));
+		}
+
+		[Test]
+		[TestCase(" 75 ", " LXX V ", 1)]
+		[TestCase(" 75 2 ", " LXX V II ", 2)]
+		[TestCase(" 75ab ", " 75ab ", 0)]
+		public void Should_substitute_integers_with_roman_numerals_in_huge_string(string arabicNumeral, string romanNumeral, int substitutions)
+		{
+			var hugeInputText = HugeStringProvider(arabicNumeral);
+			var hugeOutputText = HugeStringProvider(romanNumeral);
+
+			var result = substitutionService.Substitute(hugeInputText);
+			Assert.That(result.NumberOfSubstitutions.Equals(substitutions));
+			Assert.That(result.ResultedText.Equals(hugeOutputText));
+		}
+
+		[Test]
+		public void Should_work_with_parallell_calls_to_the_substitution_service()
+		{
+			var hugeInput1 = HugeStringProvider(" 6 7 8 ");
+			var hugeInput2 = HugeStringProvider(" 60 70 80 ");
+
+			var hugeOutput1 = HugeStringProvider(" VI VII VIII ");
+			var hugeOutput2 = HugeStringProvider(" LX LXX LXXX ");
+
+			var result1 = Task.Run(() => substitutionService.Substitute(hugeInput1));
+			var result2 = Task.Run(() => substitutionService.Substitute(hugeInput2));
+
+			Task.WaitAll(result1, result2);
+
+			Assert.That(result1.Result.NumberOfSubstitutions.Equals(3));
+			Assert.That(result1.Result.ResultedText.Equals(hugeOutput1));
+			Assert.That(result2.Result.NumberOfSubstitutions.Equals(3));
+			Assert.That(result2.Result.ResultedText.Equals(hugeOutput2));
+		}
+
+		private static string HugeStringProvider(string middleValue)
+		{
+			var hugeTextBuilder = new StringBuilder();
+			hugeTextBuilder.Append(string.Join("", Enumerable.Repeat("p", 100000000)));
+			hugeTextBuilder.Append(middleValue);
+			hugeTextBuilder.Append(string.Join("", Enumerable.Repeat("q", 100000000)));
+
+			return hugeTextBuilder.ToString();
 		}
 	}
 }

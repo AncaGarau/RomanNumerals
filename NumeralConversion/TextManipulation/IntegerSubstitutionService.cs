@@ -9,6 +9,11 @@ namespace TextManipulation
 		private readonly INumeralConverter<int, string> converter;
 		private readonly string integerPattern;
 
+		private const string SubstitutionErrorMessage =
+			@"There was an error during the substitution process.
+			Please make sure that the pattern is matching integers and that the matched values are compatible with the converter.
+			See inner exception for deatils";
+
 		public IntegerSubstitutionService(string integerPattern, INumeralConverter<int, string> converter)
 		{
 			this.integerPattern = integerPattern;
@@ -29,8 +34,8 @@ namespace TextManipulation
 				}
 				catch (Exception e)
 				{
-					Console.WriteLine(e);
-					throw;
+					var ex = new Exception(SubstitutionErrorMessage, e);
+					throw ex;
 				}
 			});
 
