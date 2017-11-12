@@ -28,10 +28,11 @@ Notes:
 
 3. Error handling
 
- -For Task 1, the convertor will throw an exception if the integer is not in the supported range. The exception should be handled by the caller code.
- -For Task 2, the substitution service will throw an exception if the conversion of a match fails. I have considered that if at least one match substitution fails, the whole process will be terminated and an exception will be thrown, containing the initial error as the inner exception.
+ - For Task 1, the convertor will throw an exception if the integer is not in the supported range. The exception should be handled by the caller code.
 
- No error logging has been created.
+ - For Task 2, the substitution service will throw an exception if the conversion of a match fails. I have considered that if at least one match substitution fails, the whole process will be terminated and an exception will be thrown, containing the initial error as the inner exception.
+
+ - No error logging has been created.
 
 4. Performance
 
@@ -42,4 +43,5 @@ Notes:
 5. Numerals
 
  - I am matching the integers from range 1-3999 with a regex. The regex will match any integer in this range that is surrounded by a word boundary. It will not match any integer that has a - in front (-6) or that is part of a word (abc4). It will match any integer from the specified range that has any other charactes surrounding it except for letters.
+
  - Since the arabic numerals do not contain spaces between their digits, but the roman numerals do, the next specific case may occur: the string "75 2" will become "LXX V II". Because there are no extra spaces inserted, it might be confusing when reading the resulting text. This was not specified in the requirements so I left it as it is.

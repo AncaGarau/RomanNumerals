@@ -28,6 +28,9 @@ namespace IntegrationTests
 		[TestCase("Should replace 2080 with roman numeral 2080.", "Should replace MM LXXX with roman numeral MM LXXX.", 2)]
 		[TestCase("...309...309309!", "...CCC IX...309309!", 1)]
 		[TestCase("6/11/63/2222", "VI/X I/LX III/MM CC XX II", 4)]
+		[TestCase("Substitute2 +2 in this case.", "Substitute2 +II in this case.", 1)]
+		[TestCase("3 large numbers examples: 3986, 2808, 2398", "III large numbers examples: MMM CM LXXX VI, MM DCCC VIII, MM CCC XC VIII", 4)]
+		[TestCase("403 504", "CD III D IV", 2)]
 		public void Should_substitute_integers_between_1_and_3999_with_roman_numerals(string inputText, string expectedOutputText, int expectedNumberOfSubstitutions)
 		{
 			var result = substitutionService.Substitute(inputText);
