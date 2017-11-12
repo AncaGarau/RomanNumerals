@@ -26,7 +26,7 @@ namespace TextManipulation.Tests
 		[TestCase("AAA123 BBB456 DDD7890", "AAA123 BBB456 DDD7890", 0)]
 		[TestCase("Should substitute this 5 but not this5.", "Should substitute this convertedNumeral but not this5.", 1)]
 		[TestCase("Substitute this 1234 multiple 1234 times 1234.", "Substitute this convertedNumeral multiple convertedNumeral times convertedNumeral.", 3)]
-		public void Should_substitute_arabic_numerals(string inputText, string expectedOutputText, int expectedNumberOfSubstitutions)
+		public void Should_substitute_arabic_integers_between_1_and_3999(string inputText, string expectedOutputText, int expectedNumberOfSubstitutions)
 		{
 			var result = service.Substitute(inputText);
 
